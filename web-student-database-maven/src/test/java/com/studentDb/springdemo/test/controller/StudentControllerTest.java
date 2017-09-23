@@ -8,7 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+
+import static org.mockito.MockitoAnnotations.initMocks;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -32,8 +33,8 @@ public class StudentControllerTest {
 	private MockMvc mockMvc;
 
 	@Before
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
+	public void init() {
+		initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
 	}
 
@@ -47,7 +48,12 @@ public class StudentControllerTest {
 
 		mockMvc.perform(get("/student/list")).andExpect(status().isOk()).andExpect(view().name("list-students"))
 				.andExpect(model().attribute("students", hasSize(2)));
+		
+		when(studentService.getsortedFirstNameStudents()).thenReturn((List<Student>) students);
 
+		mockMvc.perform(get("/student/sortByFirstName")).andExpect(status().isOk()).andExpect(view().name("list-students"))
+				.andExpect(model().attribute("students", hasSize(2)));
+		
 	}
 
 }

@@ -17,42 +17,42 @@ import javax.validation.constraints.Size;
 public class Student {
 
 	// fields
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 
 	@NotNull(message = "Is required")
-	@Size(min = 1, message = "Is required")
+	@Size(min = 1, message = "This field is required")
 	@Column(name = "first_name")
 	private String firstName;
 
 	@NotNull(message = "Is required")
-	@Size(min = 1, message = "Is required")
+	@Size(min = 1, message = "This field is required")
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid email")
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid format")
 	@Column(name = "email")
 	private String email;
-	
-	@NotNull(message = "Is required")
-	@Min(value = 0, message = "Enter proper value: 0-255")
-	@Max(value = 255, message = "Enter proper value: 0-255")
+
+	@NotNull(message = "This field is required")
+	@Min(value = 0, message = "Enter positive number")
+	@Max(value = 150, message = "Enter smaller number (max 150)")
 	@Column(name = "age")
 	private Integer age;
 
-	@NotNull(message = "Is required")
-	@Size(min = 1, message = "Is required")
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	@Column(name = "country")
 	private String country;
-	
-	@NotNull(message = "Is required")
-	@Size(min = 1, message = "Is required")
+
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	@Column(name = "city")
 	private String city;
-	
+
 	// default constructor
 	public Student() {
 
@@ -121,6 +121,4 @@ public class Student {
 				+ ", age=" + age + ", country=" + country + ", city=" + city + "]";
 	}
 
-	
-	
 }

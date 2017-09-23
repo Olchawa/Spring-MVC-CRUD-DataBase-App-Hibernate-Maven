@@ -12,14 +12,12 @@ import com.studentDb.springdemo.entity.Student;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-	// injecting student dao
 	@Autowired
 	private StudentDAO studentDAO;
 
 	@Override
 	@Transactional
 	public List<Student> getStudents() {
-
 		return studentDAO.getStudents();
 	}
 
@@ -32,17 +30,13 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public Student getStudent(int theId) {
-		
-		
 		return studentDAO.getStudent(theId);
 	}
 
 	@Override
 	@Transactional
 	public void deleteStudent(int theId) {
-		
 		studentDAO.deleteStudent(theId);
-		
 	}
 
 	@Override

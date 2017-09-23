@@ -12,10 +12,9 @@ import com.studentDb.springdemo.entity.Student;
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
-	// injecting the session factory
 	@Autowired
 	public SessionFactory sessionFactory;
-
+	
 	@Override
 	public List<Student> getStudents() {
 

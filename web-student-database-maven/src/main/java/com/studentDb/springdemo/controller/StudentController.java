@@ -21,45 +21,33 @@ import com.studentDb.springdemo.service.StudentService;
 @RequestMapping("/student")
 public class StudentController {
 
-	// injecting student service
 	@Autowired
 	private StudentService studentService;
 
 	@GetMapping("/list")
 	public String listStudents(Model theModel) {
 
-		// get students from the dao
 		List<Student> theStudents = studentService.getStudents();
-
-		// add the student to the model
 		theModel.addAttribute("students", theStudents);
-
 		return "list-students";
 	}
 
 	@GetMapping("sortByFirstName")
 	public String sortByFirstName(Model theModel) {
 
-		// get students from the dao
 		List<Student> theStudents = studentService.getsortedFirstNameStudents();
-
-		// add the student to the model
 		theModel.addAttribute("students", theStudents);
-
 		return "list-students";
 	}
-	
+
 	@GetMapping("/showAddForm")
 	public String showAddForm(Model theModel) {
 
-		// new model attribute to bind form data
 		Student theStudent = new Student();
-
 		theModel.addAttribute("student", theStudent);
-
 		return "student-form";
 	}
-	
+
 	@PostMapping("/saveStudent")
 	public String saveStudent(@Valid @ModelAttribute("student") Student theStudent, BindingResult theBindingResult) {
 
@@ -69,32 +57,20 @@ public class StudentController {
 			studentService.saveStudent(theStudent);
 			return "redirect:/student/list";
 		}
-		
-		
-		
 	}
 
 	@GetMapping("/studentUpdateForm")
 	public String studentUpdateForm(@RequestParam("studentId") int theId, Model theModel) {
 
-		// get the student from service
 		Student theStudent = studentService.getStudent(theId);
-
-		// set student as a model attribute to pre-populate the form
-
 		theModel.addAttribute("student", theStudent);
-
-		// send over to form
-
 		return "student-form";
 	}
 
 	@GetMapping("/deleteStudent")
 	public String deleteStudent(@RequestParam("studentId") int theId) {
 
-		// delete the student
 		studentService.deleteStudent(theId);
-
 		return "redirect:/student/list";
 	}
 

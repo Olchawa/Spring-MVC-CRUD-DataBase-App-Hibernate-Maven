@@ -75,11 +75,11 @@
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
 	<!-- load custom message resources -->
-	<bean id="messageSource"
+	<!--<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames" value="resources/messages" />
 		
-	</bean>
+	</bean>-->
 	
 
 </beans>
